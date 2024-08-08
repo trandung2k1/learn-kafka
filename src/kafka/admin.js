@@ -10,8 +10,8 @@ async function init() {
         topics: [
             {
                 topic: 'my-topic', // Tên chủ đề cần tạo.
-                numPartitions: 1, // Số lượng phân vùng mà chủ đề nên có. Các phân vùng cho phép xử lý dữ liệu song song.
-                replicationFactor: 1, // Số lượng bản sao (bản sao) dữ liệu của chủ đề. Điều này đảm bảo khả năng chịu lỗi và tính sẵn sàng cao.
+                numPartitions: 2, // Số lượng phân vùng mà chủ đề nên có. Các phân vùng cho phép xử lý dữ liệu song song.
+                replicationFactor: 2, // Số lượng bản sao (bản sao) dữ liệu của chủ đề. Điều này đảm bảo khả năng chịu lỗi và tính sẵn sàng cao.
                 // configEntries: [
                 //     // { name: 'cleanup.policy', value: 'compact' },
                 //     // { name: 'min.insync.replicas', value: '2' },
@@ -21,9 +21,11 @@ async function init() {
             },
         ],
     });
-    // setTimeout(async () => {
-    //     await admin.disconnect();
-    // }, 2000);
+
+    // Disconnect admin
+    setTimeout(async () => {
+        await admin.disconnect();
+    }, 2000);
 }
 
 init();

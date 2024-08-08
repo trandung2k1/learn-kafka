@@ -16,7 +16,8 @@ async function init() {
         // Một mảng các tin nhắn sẽ được gửi. Mỗi tin nhắn là một đối tượng thường bao gồm key, value, và tùy chọn headers.
         messages: [
             {
-                partition: 0, // Phân vùng cụ thể trong chủ đề nơi tin nhắn sẽ được gửi. Nếu không được chỉ định, Kafka sẽ xác định phân vùng dựa trên khóa hoặc sử dụng chiến lược phân vùng mặc định.
+                // Vùng muốn gửi
+                partition: 1, // Phân vùng cụ thể trong chủ đề nơi tin nhắn sẽ được gửi. Nếu không được chỉ định, Kafka sẽ xác định phân vùng dựa trên khóa hoặc sử dụng chiến lược phân vùng mặc định.
                 key: 'hello', //  Chìa khóa của tin nhắn. Khóa thường được sử dụng để phân vùng trong Kafka. Các tin nhắn có cùng khóa thường được gửi đến cùng một phân vùng. Nó có thể là Bộ đệm, chuỗi hoặc null.
                 value: Buffer.from('Hello, World!'), // Tải trọng thực tế của tin nhắn. Đây chính là nội dung chính mà bạn muốn gửi đến chủ đề. Nó có thể là Bộ đệm, chuỗi hoặc null.
                 // headers //Tiêu đề tùy chỉnh cho tin nhắn. Tiêu đề là cặp khóa-giá trị trong đó cả khóa và giá trị đều là chuỗi. Tiêu đề có thể được sử dụng để thêm siêu dữ liệu vào tin nhắn.
@@ -24,6 +25,8 @@ async function init() {
             },
         ],
     });
+
+    // Disconnect
     setTimeout(async () => {
         await producer.disconnect();
     }, 2000);
