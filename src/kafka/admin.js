@@ -4,14 +4,14 @@ async function init() {
     const admin = kafka.admin();
     await admin.connect();
     await admin.createTopics({
-        waitForLeaders: false, // Nếu = true, cuộc gọi sẽ đợi người đứng đầu các phân vùng được bầu chọn trước khi quay lại. Điều này đảm bảo rằng các chủ đề đang hoạt động đầy đủ.
+        waitForLeaders: true, // Nếu = true, cuộc gọi sẽ đợi người đứng đầu các phân vùng được bầu chọn trước khi quay lại. Điều này đảm bảo rằng các chủ đề đang hoạt động đầy đủ.
         validateOnly: false, // Nếu = true, các chủ đề sẽ chỉ được xác thực chứ không thực sự được tạo. Điều này rất hữu ích để kiểm tra xem yêu cầu tạo chủ đề có hợp lệ hay không mà không thực hiện bất kỳ thay đổi nào.
         // timeout: 5000,
         topics: [
             {
                 topic: 'my-topic', // Tên chủ đề cần tạo.
-                numPartitions: 2, // Số lượng phân vùng mà chủ đề nên có. Các phân vùng cho phép xử lý dữ liệu song song.
-                replicationFactor: 2, // Số lượng bản sao (bản sao) dữ liệu của chủ đề. Điều này đảm bảo khả năng chịu lỗi và tính sẵn sàng cao.
+                numPartitions: 3, // Số lượng phân vùng mà chủ đề nên có. Các phân vùng cho phép xử lý dữ liệu song song.
+                replicationFactor: 2, // Số lượng bản sao (bản sao) dữ liệu của chủ đề. Điều này đảm bảo khả năng chịu lỗi và tính sẵn sàng cao. Số lượng bản sao cho mỗi phân vùng
                 // configEntries: [
                 //     // { name: 'cleanup.policy', value: 'compact' },
                 //     // { name: 'min.insync.replicas', value: '2' },
